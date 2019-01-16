@@ -9,7 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.Nullable
 
-class LineView : View {
+class PracticeView : View {
 
     private var mBlueFill: Paint? = null
     private var mRedFilled: Paint? = null

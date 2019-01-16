@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ir.easazade.alireza.customview.LineView
+    <ir.easazade.alireza.customview.PracticeView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:text="Hello World!"
