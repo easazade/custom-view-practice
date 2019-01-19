@@ -1,4 +1,4 @@
-package ir.easazade.alireza.customview
+package ir.easazade.alireza.customview.customviews
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,6 +8,8 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.Nullable
+import ir.easazade.alireza.customview.CustomViewUtils.Companion.dpToPx
+import ir.easazade.alireza.customview.CustomViewUtils.Companion.spToPx
 
 class PracticeView : View {
 
@@ -18,10 +20,10 @@ class PracticeView : View {
     private var mBlackStroked: Paint? = null
     private var mBlackText: Paint? = null
     val tempRectF = RectF(
-        dp2Px(context, 20f),
-        dp2Px(context, 20f),
-        dp2Px(context, 90f),
-        dp2Px(context, 90f)
+        dpToPx(20),
+        dpToPx(20),
+        dpToPx(90),
+        dpToPx(90)
     )
     val str = "text message !"
 
@@ -48,19 +50,19 @@ class PracticeView : View {
         mYellowStroked = Paint(Paint.ANTI_ALIAS_FLAG)
         mYellowStroked?.color = Color.YELLOW
         mYellowStroked?.style = Paint.Style.STROKE
-        mYellowStroked?.strokeWidth = dp2Px(context, 5f)
+        mYellowStroked?.strokeWidth = dpToPx(5)
         //black
         mBlackStroked = Paint(Paint.ANTI_ALIAS_FLAG)
         mBlackStroked?.color = Color.BLACK
         mBlackStroked?.style = Paint.Style.STROKE
-        mBlackStroked?.textSize = sp2Px(context, 14f)
-        mBlackStroked?.strokeWidth = dp2Px(context, 2f)
-        //black
+        mBlackStroked?.textSize = spToPx(14)
+        mBlackStroked?.strokeWidth = dpToPx(2)
+        //blac
         mBlackText = Paint(Paint.ANTI_ALIAS_FLAG)
         mBlackText?.color = Color.BLACK
         mBlackText?.style = Paint.Style.FILL
-        mBlackText?.textSize = sp2Px(context, 14f)
-        mBlackText?.strokeWidth = dp2Px(context, 2f)
+        mBlackText?.textSize = spToPx(14)
+        mBlackText?.strokeWidth = dpToPx(2)
     }
 
 
@@ -69,34 +71,34 @@ class PracticeView : View {
         if (canvas == null)
             return
         canvas.drawLine(
-            dp2Px(context, 1f),
-            dp2Px(context, 1f),
-            dp2Px(context, 99f),
-            dp2Px(context, 99f),
+            dpToPx(1),
+            dpToPx(1),
+            dpToPx(99),
+            dpToPx(99),
             mBlueFill
         )
         canvas.drawPoints(floatArrayOf(50f, 6f), mBlueFill)
         canvas.drawCircle(
-            dp2Px(context, 50f),
-            dp2Px(context, 50f),
-            dp2Px(context, 40f),
+            dpToPx(50),
+            dpToPx(50),
+            dpToPx(40),
             mRedFilled
         )
         canvas.drawCircle(
-            dp2Px(context, 80f),
-            dp2Px(context, 30f),
-            dp2Px(context, 22f),
+            dpToPx(80),
+            dpToPx(30),
+            dpToPx(22),
             mGreenStroked
         )
         canvas.drawRect(tempRectF, mGreenStroked)
         canvas.drawArc(tempRectF, 0f, 90f, true, mYellowStroked)
         canvas.drawArc(tempRectF, 90f, 150f, false, mBlueFill)
-        mGreenStroked?.strokeWidth = dp2Px(context, 10f)
+        mGreenStroked?.strokeWidth = dpToPx(10)
         canvas.drawArc(tempRectF, 180f, 200f, false, mGreenStroked)
         canvas.drawText(
             str,
-            dp2Px(context, 10f),
-            dp2Px(context, 40f),
+            dpToPx(10),
+            dpToPx(40),
             mBlackStroked
         )
     }
