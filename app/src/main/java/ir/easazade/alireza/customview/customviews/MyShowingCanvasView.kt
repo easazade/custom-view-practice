@@ -40,7 +40,11 @@ class MyShowingCanvasView : View {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(context)
     }
-
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
+        context,
+        attrs,
+        defStyle
+    )
 
     private fun init(context: Context) {
         axisPaint = Paint()

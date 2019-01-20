@@ -19,8 +19,7 @@ class MyCircleView : View {
 
     var degree = 0f
     var radius2: Float = 0.toFloat()
-
-    internal var receivedStrokeSize = -1f
+    var receivedStrokeSize = -1f
     var strokeSize: Float
         get() = mPaint.strokeWidth
         set(strokeSize) {
@@ -52,6 +51,25 @@ class MyCircleView : View {
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
 
+        val a = context.obtainStyledAttributes(
+            attrs,
+            R.styleable.MyCircleView
+        )
+        //16dp is default value
+        receivedStrokeSize = a.getDimension(
+            R.styleable.MyCircleView_mcv_stroke_size,
+            dpToPx(16)
+        )
+
+        a.recycle()
+
+        init()
+    }
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
+        context,
+        attrs,
+        defStyle
+    ){
         val a = context.obtainStyledAttributes(
             attrs,
             R.styleable.MyCircleView

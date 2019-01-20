@@ -1,4 +1,4 @@
-package ir.easazade.alireza.customview.customviews
+package ir.easazade.alireza.customview.mycustomviews
 
 import android.content.Context
 import android.graphics.Canvas
@@ -29,6 +29,11 @@ class PracticeView : View {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, @Nullable attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
+        context,
+        attrs,
+        defStyle
+    )
 
     init {
         //black

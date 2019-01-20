@@ -9,11 +9,11 @@ import ir.easazade.alireza.customview.CustomViewUtils.Companion.spToPx
 
 class Sample1CustomView : View {
 
-    var textPaddingLeftRight: Float = 0.toFloat()
+    var textPaddingLeft: Float = 0.toFloat()
 
-    var drawingText = "Custom View"
+    var drawingText = "عجب روز خوبیه امروز آره خوبه"
     var drawingTextBounds = Rect()
-
+    var floatHolder = 0
     lateinit var textPaint: Paint
     lateinit var linePaint: Paint
 
@@ -26,46 +26,47 @@ class Sample1CustomView : View {
         init(context)
     }
 
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
+        context,
+        attrs,
+        defStyle
+    )
+
 
     private fun init(context: Context) {
-        textPaddingLeftRight = dpToPx(8)
+        textPaddingLeft = dpToPx(2)
 
         textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         textPaint.color = Color.BLACK
-        textPaint.textSize = spToPx(16)
-        textPaint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+        textPaint.textSize = spToPx(13)
+        textPaint.textAlign = Paint.Align.RIGHT
+        textPaint.typeface = Typeface.createFromAsset(context.assets, "irsans.ttf")
 
 
         linePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        linePaint.color = Color.BLACK
-        linePaint.strokeWidth = dpToPx(2)
+        linePaint.color = Color.RED
     }
 
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        textPaint.getTextBounds(drawingText, 0, drawingText.length, drawingTextBounds)
+        canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), linePaint)
 
-
-        val lineSize =
-            (width.toFloat() - drawingTextBounds.width().toFloat() - 2 * textPaddingLeftRight) / 2
-
-        //Draw Left Line
-        canvas.drawLine(0f, (height / 2).toFloat(), lineSize, (height / 2).toFloat(), linePaint)
+        println("width is $width")
+        println("${drawingTextBounds.bottom} ${drawingTextBounds.top} ${drawingTextBounds.left} ${drawingTextBounds.right}")
+        textPaint.getTextBounds(
+            drawingText,
+            0,
+            drawingText.length,
+            drawingTextBounds
+        ) //TODO allocates bounds to the rect 4th arguments
+        println("${drawingTextBounds.bottom} ${drawingTextBounds.top} ${drawingTextBounds.left} ${drawingTextBounds.right}")
         //Draw Text
         canvas.drawText(
             drawingText,
-            lineSize + textPaddingLeftRight,
+            width - textPaddingLeft,
             (height / 2 + drawingTextBounds.height() / 2).toFloat(),
             textPaint
-        )
-        //Draw Right Line
-        canvas.drawLine(
-            lineSize + drawingTextBounds.width().toFloat() + textPaddingLeftRight * 2,
-            (height / 2).toFloat(),
-            width.toFloat(),
-            (height / 2).toFloat(),
-            linePaint
         )
     }
 }
